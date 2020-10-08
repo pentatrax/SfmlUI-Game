@@ -60,11 +60,17 @@ namespace Game_with_sfmlui
 
         private void highlightPlayTextColor()
         {
-            _playText.Color = Color.Blue;
+            if (_active)
+            {
+                _playText.Color = Color.Blue;
+            }
         }
         private void highlightSettingsTextColor()
         {
-            _settingsText.Color = Color.Blue;
+            if (_active)
+            {
+                _settingsText.Color = Color.Blue;
+            }
         }
         private void dehighlightPlayTextColor()
         {

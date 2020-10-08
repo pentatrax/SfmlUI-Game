@@ -40,7 +40,7 @@
           "dependencies": {
             "SfmlUI": {
               "target": "Package",
-              "version": "[1.0.0-pre.4, )"
+              "version": "[1.0.0-pre.6, )"
             }
           },
           "imports": [

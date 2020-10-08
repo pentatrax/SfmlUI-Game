@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "ZTaKHDrywctkyWbYoSTwEQShMxiiKWxehJLmq6xbW6dP4z1sD2m3i1UZ08bLcm3ymvnt1b0FwtGkbbO3/CKGaA==",
+  "dgSpecHash": "J02o4hxuWYmvwNaCXd3oEH3Qrjlg0giMKOBmuMWKBK8ZmaVPixd9915ByvOvzaEa/E2kYJKn/NSdVx+8ChAPxQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\burni\\Source\\Repos\\SfmlUI-Game\\Game with sfmlui\\Game with sfmlui.csproj",
   "expectedPackageFiles": [
@@ -10,7 +10,7 @@
     "C:\\Users\\burni\\.nuget\\packages\\sfml.net\\2.5.0\\sfml.net.2.5.0.nupkg.sha512",
     "C:\\Users\\burni\\.nuget\\packages\\sfml.system\\2.5.0\\sfml.system.2.5.0.nupkg.sha512",
     "C:\\Users\\burni\\.nuget\\packages\\sfml.window\\2.5.0\\sfml.window.2.5.0.nupkg.sha512",
-    "C:\\Users\\burni\\.nuget\\packages\\sfmlui\\1.0.0-pre.4\\sfmlui.1.0.0-pre.4.nupkg.sha512"
+    "C:\\Users\\burni\\.nuget\\packages\\sfmlui\\1.0.0-pre.6\\sfmlui.1.0.0-pre.6.nupkg.sha512"
   ],
   "logs": []
 }

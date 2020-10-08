@@ -22,7 +22,7 @@ namespace Game_with_sfmlui
             menu.StateShiftToSettings += StateToSettings;
 
             Settings settings = new Settings(Window, GlobalFont);
-
+            settings.StateShiftToMenu += StateToMenu;
 
             while (Window.IsOpen)
             {
@@ -45,6 +45,11 @@ namespace Game_with_sfmlui
                 Window.Close();
             }
 
+            void StateToMenu(object sender, EventArgs e)
+            {
+                _state = State.Menu;
+                Console.WriteLine(_state);
+            }
             void StateToPlay(object sender, EventArgs e)
             {
                 _state = State.Play;
