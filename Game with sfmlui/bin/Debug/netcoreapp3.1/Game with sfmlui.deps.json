@@ -8,7 +8,7 @@
     ".NETCoreApp,Version=v3.1": {
       "Game with sfmlui/1.0.0": {
         "dependencies": {
-          "SfmlUI": "1.0.0-pre.4"
+          "SfmlUI": "1.0.0-pre.6"
         },
         "runtime": {
           "Game with sfmlui.dll": {}
@@ -366,7 +366,7 @@
           }
         }
       },
-      "SfmlUI/1.0.0-pre.4": {
+      "SfmlUI/1.0.0-pre.6": {
         "dependencies": {
           "SFML.Net": "2.5.0"
         },
@@ -427,12 +427,12 @@
       "path": "sfml.window/2.5.0",
       "hashPath": "sfml.window.2.5.0.nupkg.sha512"
     },
-    "SfmlUI/1.0.0-pre.4": {
+    "SfmlUI/1.0.0-pre.6": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-t4JBJJ47Y7FHiUcLnwfmH5a7I2fmCJwyKv2kIe2sWS1quK6OPVwJh+DB+Qmn/brzoF9e6JDpMKQ1RpS2rf+8tw==",
-      "path": "sfmlui/1.0.0-pre.4",
-      "hashPath": "sfmlui.1.0.0-pre.4.nupkg.sha512"
+      "sha512": "sha512-XOptO8UXl2p14GnGa2/WQKcZH4uBE3aYPwuwhkaoZwTKSrQuuSn6bleUrTcdu1+tu9orpMvMTpAZpcjfy2LaaQ==",
+      "path": "sfmlui/1.0.0-pre.6",
+      "hashPath": "sfmlui.1.0.0-pre.6.nupkg.sha512"
     }
   }
 }

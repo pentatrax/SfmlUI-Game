@@ -20,6 +20,7 @@ namespace Game_with_sfmlui
             Menu menu = new Menu(Window, GlobalFont);
             menu.StateShiftToPlay += StateToPlay;
             menu.StateShiftToSettings += StateToSettings;
+            menu.QuitGame += CloseGame;
 
             Settings settings = new Settings(Window, GlobalFont);
             settings.StateShiftToMenu += StateToMenu;
