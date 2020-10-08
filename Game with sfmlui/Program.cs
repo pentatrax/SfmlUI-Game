@@ -3,6 +3,7 @@ using SfmlUI;
 using SFML;
 using SFML.Graphics;
 using SFML.Window;
+using SFML.System;
 
 namespace Game_with_sfmlui
 {
@@ -11,8 +12,11 @@ namespace Game_with_sfmlui
         public enum State {Menu, Settings, Play, Pause, GameOver}
         static void Main(string[] args)
         {
-            RenderWindow Window = new RenderWindow(VideoMode.FullscreenModes[0], "SfmlUI Game", Styles.Fullscreen);
+            const string TITLE = "SfmlUI Game";
+
+            RenderWindow Window = new RenderWindow(VideoMode.FullscreenModes[0], TITLE, Styles.Fullscreen);
             Window.Closed += CloseGame;
+
             Font GlobalFont = new Font("8-bit Arcade In.ttf");
 
             State _state = State.Menu;
@@ -24,7 +28,9 @@ namespace Game_with_sfmlui
 
             Settings settings = new Settings(Window, GlobalFont);
             settings.StateShiftToMenu += StateToMenu;
+            settings.ApplyMenuSettings += ApplySettings;
 
+            // the main runtime loop
             while (Window.IsOpen)
             {
                 Window.Clear();
@@ -41,6 +47,41 @@ namespace Game_with_sfmlui
                 
             }
 
+            void ApplySettings(object sender, WindowArgs e)
+            {
+                VideoMode res = VideoMode.FullscreenModes[0];
+                Styles style;
+                foreach (VideoMode videoMode in VideoMode.FullscreenModes)
+                {
+                    if (videoMode.Width.ToString() + " x " + videoMode.Height.ToString() == e.Resolution)
+                    {
+                        res = videoMode;
+                    }
+                }
+                if (e.Fullscreen)
+                {
+                    style = Styles.Fullscreen;
+                }
+                else
+                {
+                    style = Styles.Default;
+                }
+                Console.WriteLine("Changing Resolution to: " + e.Resolution);
+                Window.Close();
+                Window = new RenderWindow(res, TITLE, style);
+                Window.Closed += CloseGame;
+
+                menu = new Menu(Window, GlobalFont);
+                menu.StateShiftToPlay += StateToPlay;
+                menu.StateShiftToSettings += StateToSettings;
+                menu.QuitGame += CloseGame;
+
+                settings = new Settings(Window, GlobalFont);
+                settings.StateShiftToMenu += StateToMenu;
+                settings.ApplyMenuSettings += ApplySettings;
+            }
+
+            // State shift commands
             void CloseGame(object sender, EventArgs e)
             {
                 Window.Close();

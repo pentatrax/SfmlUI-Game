@@ -11,6 +11,7 @@ namespace Game_with_sfmlui
     class Settings
     {
         private bool _active = false;
+        private Vector2f _unit;
         private RenderWindow _window;
         private Text _title;
         private Dropdown _resolutionPicker;
@@ -18,24 +19,25 @@ namespace Game_with_sfmlui
         private Text _apply;
         private Checkbox _fullscreen;
         public event EventHandler StateShiftToMenu;
-        public event EventHandler ApplyMenuSettings;
+        public event EventHandler<WindowArgs> ApplyMenuSettings;
 
         public Settings(RenderWindow window, Font font)
         {
             _window = window;
+            _unit = new Vector2f(window.Size.X / 100f, window.Size.Y / 100f);
             _window.MouseMoved += OnMouseMove;
             _window.MouseButtonPressed += OnMousePress;
             _window.MouseButtonReleased += OnMouseRelease;
 
-            _title = new Text("SETTINGS", font, 100);
-            _title.Position = new Vector2f(window.Size.X * 0.5f, 10) - new Vector2f(_title.GetGlobalBounds().Width * 0.5f, 0);
+            _title = new Text("SETTINGS", font, 5 * (uint)_unit.X);
+            _title.Position = new Vector2f(window.Size.X * 0.5f, 0.5f * _unit.Y) - new Vector2f(_title.GetGlobalBounds().Width * 0.5f, 0);
 
             List<string> resolutions = new List<string>();
             foreach (VideoMode videoMode in VideoMode.FullscreenModes)
             {
                 resolutions.Add(videoMode.Width.ToString() + " x " + videoMode.Height.ToString());
             }
-            _resolutionPicker = new Dropdown(_window, new Vector2f(window.Size.X * 0.1f, _title.GetGlobalBounds().Top + _title.GetGlobalBounds().Height), font, 60, "");
+            _resolutionPicker = new Dropdown(_window, new Vector2f(window.Size.X * 0.1f, _title.GetGlobalBounds().Top + _title.GetGlobalBounds().Height + 0.5f * _unit.Y), font, 3 * (uint)_unit.X, "");
             _resolutionPicker.BackgroundColor = new Color(50, 50, 50, 122);
             _resolutionPicker.OutlineColor = Color.Red;
             _resolutionPicker.TextColor = Color.White;
@@ -46,11 +48,11 @@ namespace Game_with_sfmlui
             }
             _resolutionPicker.RemoveItem("");
 
-            _apply = new Text("Apply", font, 100);
+            _apply = new Text("Apply", font, 5 * (uint)_unit.X);
             _apply.Position = new Vector2f(window.Size.X * 0.5f - _apply.GetGlobalBounds().Width * 0.5f, window.Size.Y * 0.75f);
 
-            _back = new Text("Back", font, 100);
-            _back.Position = new Vector2f(window.Size.X * 0.5f - _back.GetGlobalBounds().Width * 0.5f, _apply.GetGlobalBounds().Top) + new Vector2f(0, _apply.GetGlobalBounds().Height + 5);
+            _back = new Text("Back", font, 5 * (uint)_unit.X);
+            _back.Position = new Vector2f(window.Size.X * 0.5f - _back.GetGlobalBounds().Width * 0.5f, _apply.GetGlobalBounds().Top) + new Vector2f(0, _apply.GetGlobalBounds().Height + 0.25f * _unit.Y);
         }
 
         public void Draw()
@@ -94,13 +96,13 @@ namespace Game_with_sfmlui
             if (IsInside(new Vector2f(e.X, e.Y), _apply) && _active)
             {
                 _apply.FillColor = new Color(255, 0, 0, 255);
-                ApplyMenuSettings?.Invoke(this, e);
+                ApplyMenuSettings?.Invoke(this, new WindowArgs(_resolutionPicker.ChosenItem, true));
                 _active = false;
             }
             else if (IsInside(new Vector2f(e.X, e.Y), _back) && _active)
             {
                 _back.FillColor = new Color(255, 0, 0, 255);
-                StateShiftToMenu?.Invoke(this, e);
+                StateShiftToMenu?.Invoke(this, EventArgs.Empty);
                 _active = false;
             }
         }

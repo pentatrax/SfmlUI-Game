@@ -9,6 +9,8 @@ namespace Game_with_sfmlui
     public class Menu
     {
         private bool _active;
+        private Color _pressedColor = new Color(50, 50, 50, 255);
+        private Vector2f _unit;
         private RenderWindow _window;
         private Button _playButton;
         private Button _settingsButton;
@@ -23,32 +25,33 @@ namespace Game_with_sfmlui
         public Menu(RenderWindow window, Font font)
         {
             _window = window;
+            _unit = new Vector2f(window.Size.X / 100f, window.Size.Y / 100f);
             
-            _playButton = new Button(window, new Vector2f(window.Size.X*0.5f-200, window.Size.Y*0.66f), new Vector2f(400, 100));
+            _playButton = new Button(window, new Vector2f(window.Size.X*0.5f - 10f * _unit.X, window.Size.Y* 0.66f), new Vector2f(20f * _unit.X, 10f * _unit.Y));
             _playButton.OuterColor = Color.Red;
             _playButton.CenterOutlineColor = Color.Red;
             _playButton.ButtonHeld += highlightPlayTextColor;
             _playButton.ButtonReleased += dehighlightPlayTextColor;
             
-            _settingsButton = new Button(window, _playButton.Position + new Vector2f(0, _playButton.Size.Y+20), new Vector2f(400, 100));
+            _settingsButton = new Button(window, _playButton.Position + new Vector2f(0, _playButton.Size.Y+1 * _unit.Y), new Vector2f(20f * _unit.X, 10f * _unit.Y));
             _settingsButton.OuterColor = Color.Red;
             _settingsButton.CenterOutlineColor = Color.Red;
             _settingsButton.ButtonPressed += highlightSettingsTextColor;
             _settingsButton.ButtonReleased += dehighlightSettingsTextColor;
 
-            _quitButton = new Button(window, _settingsButton.Position + new Vector2f(0, _settingsButton.Size.Y + 20), new Vector2f(400, 100));
+            _quitButton = new Button(window, _settingsButton.Position + new Vector2f(0, _settingsButton.Size.Y + 1f * _unit.Y), new Vector2f(20f * _unit.X, 10f * _unit.Y));
             _quitButton.OuterColor = Color.Red;
             _quitButton.CenterOutlineColor = Color.Red;
             _quitButton.ButtonPressed += highlightQuitTextColor;
             _quitButton.ButtonReleased += dehighlightQuitTextColor;
 
-            _playText = new Text("PLAY", font, 400 / 4);
+            _playText = new Text("PLAY", font, 5 * (uint)_unit.X);
             m_CenterTextInButton(_playButton, _playText);
 
-            _settingsText = new Text("SETTINGS", font, 400 / 4);
+            _settingsText = new Text("SETTINGS", font, 5 * (uint)_unit.X);
             m_CenterTextInButton(_settingsButton, _settingsText);
 
-            _quitText = new Text("QUIT", font, 400 / 4);
+            _quitText = new Text("QUIT", font, 5 * (uint)_unit.X);
             m_CenterTextInButton(_quitButton, _quitText);
 
         }
@@ -67,7 +70,7 @@ namespace Game_with_sfmlui
         private void m_CenterTextInButton(Button button, Text text)
         {
             float x = button.Position.X + button.Size.X * 0.5f - text.GetGlobalBounds().Width * 0.5f;
-            float y = button.Position.Y - button.Size.Y * 0.11f - text.GetGlobalBounds().Height * 0.5f;
+            float y = button.Position.Y - button.Size.Y * 0.05f - text.GetGlobalBounds().Height * 0.5f;
 
             text.Position = new Vector2f(x, y);
         }
@@ -76,14 +79,14 @@ namespace Game_with_sfmlui
         {
             if (_active)
             {
-                _playText.FillColor = Color.Blue;
+                _playText.FillColor = _pressedColor;
             }
         }
         private void highlightSettingsTextColor()
         {
             if (_active)
             {
-                _settingsText.FillColor = Color.Blue;
+                _settingsText.FillColor = _pressedColor;
             }
         }
         private void dehighlightPlayTextColor()
@@ -109,7 +112,7 @@ namespace Game_with_sfmlui
         {
             if (_active)
             {
-                _quitText.FillColor = Color.Blue;
+                _quitText.FillColor = _pressedColor;
             }
         }
         private void dehighlightQuitTextColor()
