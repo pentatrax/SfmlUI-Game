@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30523.141
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Game with sfmlui", "Game with sfmlui\Game with sfmlui.csproj", "{289C773C-3FC7-48A6-8246-2F3F0D55BA26}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{289C773C-3FC7-48A6-8246-2F3F0D55BA26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{289C773C-3FC7-48A6-8246-2F3F0D55BA26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{289C773C-3FC7-48A6-8246-2F3F0D55BA26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{289C773C-3FC7-48A6-8246-2F3F0D55BA26}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CA757FAF-9F5C-4364-83C9-58A86990D3FA}
+	EndGlobalSection
+EndGlobal
