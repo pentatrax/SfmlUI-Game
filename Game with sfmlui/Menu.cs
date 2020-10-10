@@ -18,6 +18,8 @@ namespace Game_with_sfmlui
         private Text _playText;
         private Text _settingsText;
         private Text _quitText;
+        private Sprite _background;
+        private Sprite _gameTitle;
         public event EventHandler StateShiftToPlay;
         public event EventHandler StateShiftToSettings;
         public event EventHandler QuitGame;
@@ -27,23 +29,28 @@ namespace Game_with_sfmlui
             _window = window;
             _unit = new Vector2f(window.Size.X / 100f, window.Size.Y / 100f);
             
+            // Play button
             _playButton = new Button(window, new Vector2f(window.Size.X*0.5f - 10f * _unit.X, window.Size.Y* 0.66f), new Vector2f(20f * _unit.X, 10f * _unit.Y));
             _playButton.OuterColor = Color.Red;
             _playButton.CenterOutlineColor = Color.Red;
             _playButton.ButtonHeld += highlightPlayTextColor;
             _playButton.ButtonReleased += dehighlightPlayTextColor;
             
+            // Settings button
             _settingsButton = new Button(window, _playButton.Position + new Vector2f(0, _playButton.Size.Y+1 * _unit.Y), new Vector2f(20f * _unit.X, 10f * _unit.Y));
             _settingsButton.OuterColor = Color.Red;
             _settingsButton.CenterOutlineColor = Color.Red;
             _settingsButton.ButtonPressed += highlightSettingsTextColor;
             _settingsButton.ButtonReleased += dehighlightSettingsTextColor;
 
+            // Quit button
             _quitButton = new Button(window, _settingsButton.Position + new Vector2f(0, _settingsButton.Size.Y + 1f * _unit.Y), new Vector2f(20f * _unit.X, 10f * _unit.Y));
             _quitButton.OuterColor = Color.Red;
             _quitButton.CenterOutlineColor = Color.Red;
             _quitButton.ButtonPressed += highlightQuitTextColor;
             _quitButton.ButtonReleased += dehighlightQuitTextColor;
+
+            // Button texts
 
             _playText = new Text("PLAY", font, 5 * (uint)_unit.X);
             m_CenterTextInButton(_playButton, _playText);
@@ -56,7 +63,7 @@ namespace Game_with_sfmlui
 
         }
 
-        public void Draw()
+        public void Draw() // Draw menu
         {
             _active = true;
             _playButton.Draw();
@@ -67,7 +74,8 @@ namespace Game_with_sfmlui
             _window.Draw(_quitText);
         }
 
-        private void m_CenterTextInButton(Button button, Text text)
+        // Button text code since the one who made the button code didnt implement text options
+        private void m_CenterTextInButton(Button button, Text text) // Make sure the text is inside the box
         {
             float x = button.Position.X + button.Size.X * 0.5f - text.GetGlobalBounds().Width * 0.5f;
             float y = button.Position.Y - button.Size.Y * 0.05f - text.GetGlobalBounds().Height * 0.5f;
