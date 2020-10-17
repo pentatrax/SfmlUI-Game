@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "NR905Wn7Mr42XmZ4kLsQBFg/PPI+5Xwdvwt3peCT035eQBrNqMKnAevAdJo+T4x0LPNFtoh4TVRL2A44Wm+t8Q==",
+  "dgSpecHash": "d2uxHVLUna4ACqDvkciYMaqXVw3U1neeQGZpUBdG6WaxtzlXXsBJ+wNDgs2enzKGhDTznhYvvFXwLg4Ah0yQdw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\burni\\Source\\Repos\\SfmlUI-Game\\Game with sfmlui\\Game with sfmlui.csproj",
+  "projectFilePath": "C:\\Users\\burni\\source\\repos\\SfmlUI-Game\\Game with sfmlui\\Game with sfmlui.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\burni\\.nuget\\packages\\csfml\\2.5.0\\csfml.2.5.0.nupkg.sha512",
     "C:\\Users\\burni\\.nuget\\packages\\sfml.audio\\2.5.0\\sfml.audio.2.5.0.nupkg.sha512",

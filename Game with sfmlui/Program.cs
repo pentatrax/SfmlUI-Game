@@ -21,6 +21,8 @@ namespace Game_with_sfmlui
 
             State _state = State.Menu;
 
+            Background background = new Background(Window, new Image("rsrc/background-1.png"));
+
             Menu menu = new Menu(Window, GlobalFont);
             menu.StateShiftToPlay += StateToPlay;
             menu.StateShiftToSettings += StateToSettings;
@@ -37,8 +39,8 @@ namespace Game_with_sfmlui
                 Window.DispatchEvents();
                 switch (_state)
                 {
-                    case State.Menu: menu.Draw(); break;
-                    case State.Settings: settings.Draw(); break;
+                    case State.Menu: background.Draw(); menu.Draw(); break;
+                    case State.Settings: background.Draw(); settings.Draw(); break;
                     case State.Play: break;
                     case State.Pause: break;
                     case State.GameOver: break;
@@ -70,6 +72,8 @@ namespace Game_with_sfmlui
                 Window.Close();
                 Window = new RenderWindow(res, TITLE, style);
                 Window.Closed += CloseGame;
+
+                background = new Background(Window, new Image("rsrc/background-1.png"));
 
                 menu = new Menu(Window, GlobalFont);
                 menu.StateShiftToPlay += StateToPlay;

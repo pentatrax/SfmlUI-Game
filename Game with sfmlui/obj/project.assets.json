@@ -474,11 +474,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\burni\\Source\\Repos\\SfmlUI-Game\\Game with sfmlui\\Game with sfmlui.csproj",
+      "projectUniqueName": "C:\\Users\\burni\\source\\repos\\SfmlUI-Game\\Game with sfmlui\\Game with sfmlui.csproj",
       "projectName": "Game with sfmlui",
-      "projectPath": "C:\\Users\\burni\\Source\\Repos\\SfmlUI-Game\\Game with sfmlui\\Game with sfmlui.csproj",
+      "projectPath": "C:\\Users\\burni\\source\\repos\\SfmlUI-Game\\Game with sfmlui\\Game with sfmlui.csproj",
       "packagesPath": "C:\\Users\\burni\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\burni\\Source\\Repos\\SfmlUI-Game\\Game with sfmlui\\obj\\",
+      "outputPath": "C:\\Users\\burni\\source\\repos\\SfmlUI-Game\\Game with sfmlui\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\"
@@ -529,7 +529,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
       }
     }
   }
