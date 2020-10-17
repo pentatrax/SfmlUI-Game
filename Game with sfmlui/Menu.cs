@@ -18,8 +18,7 @@ namespace Game_with_sfmlui
         private Text _playText;
         private Text _settingsText;
         private Text _quitText;
-        private Sprite _background;
-        private Sprite _gameTitle;
+        private Text _gameTitle;
         public event EventHandler StateShiftToPlay;
         public event EventHandler StateShiftToSettings;
         public event EventHandler QuitGame;
@@ -51,7 +50,6 @@ namespace Game_with_sfmlui
             _quitButton.ButtonReleased += dehighlightQuitTextColor;
 
             // Button texts
-
             _playText = new Text("PLAY", font, 5 * (uint)_unit.X);
             m_CenterTextInButton(_playButton, _playText);
 
@@ -61,11 +59,19 @@ namespace Game_with_sfmlui
             _quitText = new Text("QUIT", font, 5 * (uint)_unit.X);
             m_CenterTextInButton(_quitButton, _quitText);
 
+            // Title text
+            _gameTitle = new Text("GAME", font, 15 * (uint)_unit.X);
+            _gameTitle.Position = new Vector2f( window.Position.X + window.Size.X * 0.5f - _gameTitle.GetGlobalBounds().Width * 0.5f,
+                                                window.Position.Y + window.Size.Y * 0.2f - _gameTitle.GetGlobalBounds().Height * 0.5f );
+            _gameTitle.Style = Text.Styles.Bold;
+            _gameTitle.OutlineColor = Color.Red;
+            _gameTitle.OutlineThickness = 1 * (uint)_unit.X;
         }
 
         public void Draw() // Draw menu
         {
             _active = true;
+            _window.Draw(_gameTitle);
             _playButton.Draw();
             _window.Draw(_playText);
             _settingsButton.Draw();
