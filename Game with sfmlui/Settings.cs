@@ -20,6 +20,7 @@ namespace Game_with_sfmlui
         private Text _apply;
         private Text _fullscreen;
         private Checkbox _fullscreenCheckbox;
+        private Sprite _background;
         public event EventHandler StateShiftToMenu;
         public event EventHandler<WindowArgs> ApplyMenuSettings;
 
