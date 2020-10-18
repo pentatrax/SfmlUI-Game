@@ -123,7 +123,7 @@ namespace Game_with_sfmlui
             if (IsInside(new Vector2f(e.X, e.Y), _apply) && _active)
             {
                 _apply.FillColor = new Color(255, 0, 0, 255);
-                ApplyMenuSettings?.Invoke(this, new WindowArgs(_resolutionPicker.ChosenItem, true));
+                ApplyMenuSettings?.Invoke(this, new WindowArgs(_resolutionPicker.ChosenItem, false));
                 _active = false;
             }
             else if (IsInside(new Vector2f(e.X, e.Y), _back) && _active)

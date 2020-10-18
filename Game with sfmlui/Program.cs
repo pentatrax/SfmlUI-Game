@@ -66,7 +66,7 @@ namespace Game_with_sfmlui
                 }
                 else
                 {
-                    style = Styles.Default;
+                    style = Styles.Close | Styles.Titlebar;
                 }
                 Console.WriteLine("Changing Resolution to: " + e.Resolution);
                 Window.Close();
