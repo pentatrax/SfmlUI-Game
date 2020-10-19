@@ -31,21 +31,24 @@ namespace Game_with_sfmlui
             // Play button
             _playButton = new Button(window, new Vector2f(window.Size.X*0.5f - 10f * _unit.X, window.Size.Y* 0.66f), new Vector2f(20f * _unit.X, 10f * _unit.Y));
             _playButton.OuterColor = Color.Red;
-            _playButton.CenterOutlineColor = Color.Red;
+            _playButton.CenterColor = Color.Transparent;
+            _playButton.CenterOutlineColor = Color.Transparent;
             _playButton.ButtonHeld += highlightPlayTextColor;
             _playButton.ButtonReleased += dehighlightPlayTextColor;
             
             // Settings button
             _settingsButton = new Button(window, _playButton.Position + new Vector2f(0, _playButton.Size.Y+1 * _unit.Y), new Vector2f(20f * _unit.X, 10f * _unit.Y));
             _settingsButton.OuterColor = Color.Red;
-            _settingsButton.CenterOutlineColor = Color.Red;
+            _settingsButton.CenterColor = Color.Transparent;
+            _settingsButton.CenterOutlineColor = Color.Transparent;
             _settingsButton.ButtonPressed += highlightSettingsTextColor;
             _settingsButton.ButtonReleased += dehighlightSettingsTextColor;
 
             // Quit button
             _quitButton = new Button(window, _settingsButton.Position + new Vector2f(0, _settingsButton.Size.Y + 1f * _unit.Y), new Vector2f(20f * _unit.X, 10f * _unit.Y));
             _quitButton.OuterColor = Color.Red;
-            _quitButton.CenterOutlineColor = Color.Red;
+            _quitButton.CenterColor = Color.Transparent;
+            _quitButton.CenterOutlineColor = Color.Transparent;
             _quitButton.ButtonPressed += highlightQuitTextColor;
             _quitButton.ButtonReleased += dehighlightQuitTextColor;
 

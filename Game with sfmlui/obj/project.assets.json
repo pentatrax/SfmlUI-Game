@@ -468,25 +468,20 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\burni\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
+    "C:\\Users\\burni\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\burni\\Source\\Repos\\SfmlUI-Game\\Game with sfmlui\\Game with sfmlui.csproj",
+      "projectUniqueName": "C:\\Users\\burni\\source\\repos\\SfmlUI-Game\\Game with sfmlui\\Game with sfmlui.csproj",
       "projectName": "Game with sfmlui",
-      "projectPath": "C:\\Users\\burni\\Source\\Repos\\SfmlUI-Game\\Game with sfmlui\\Game with sfmlui.csproj",
+      "projectPath": "C:\\Users\\burni\\source\\repos\\SfmlUI-Game\\Game with sfmlui\\Game with sfmlui.csproj",
       "packagesPath": "C:\\Users\\burni\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\burni\\Source\\Repos\\SfmlUI-Game\\Game with sfmlui\\obj\\",
+      "outputPath": "C:\\Users\\burni\\source\\repos\\SfmlUI-Game\\Game with sfmlui\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\"
-      ],
       "configFilePaths": [
         "C:\\Users\\burni\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
@@ -529,7 +524,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
       }
     }
   }
