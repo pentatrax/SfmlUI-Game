@@ -13,6 +13,7 @@ namespace Game_with_sfmlui
         private bool _active = false;
         private Vector2f _unit;
         private RenderWindow _window;
+        private WindowArgs _windowState;
         private Text _title;
         private Dropdown _resolutionPicker;
         private Text _resolution;
@@ -23,10 +24,11 @@ namespace Game_with_sfmlui
         public event EventHandler StateShiftToMenu;
         public event EventHandler<WindowArgs> ApplyMenuSettings;
 
-        public Settings(RenderWindow window, Font font)
+        public Settings(RenderWindow window, Font font, WindowArgs windowState)
         {
             // Necesary info/values
             _window = window;
+            _windowState = windowState;
             _unit = new Vector2f(window.Size.X / 100f, window.Size.Y / 100f);
             _window.MouseMoved += OnMouseMove;
             _window.MouseButtonPressed += OnMousePress;
@@ -56,19 +58,43 @@ namespace Game_with_sfmlui
                 _resolutionPicker.AddItem(res);
             }
             _resolutionPicker.RemoveItem("");
+            for (int i=0; i<resolutions.Count; i++)
+            {
+                if (resolutions[i] == _window.Size.X.ToString() + " x " + _window.Size.Y.ToString())
+                {
+                    string tempResHolder = _resolutionPicker.ChosenItem;
+                    _resolutionPicker.RemoveItem(resolutions[i]);
+                    _resolutionPicker.ReplaceItem(_resolutionPicker.ChosenItem, resolutions[i]);
+                    if (resolutions[i] != tempResHolder)
+                    {
+                        _resolutionPicker.AddItem(tempResHolder);
+                    }
+                }
+            }
             _resolutionPicker.Position = new Vector2f(_resolution.GetGlobalBounds().Left + _resolution.GetGlobalBounds().Width * 0.5f - _resolutionPicker.Width * 0.5f, _resolution.Position.Y + _resolution.GetGlobalBounds().Height * 3.5f);
 
             // Fullscreen text
             _fullscreen = new Text("Fullscreen ", font, 3 * (uint)_unit.X);
             _fullscreen.Position = new Vector2f(_window.Size.X - _window.Size.X * 0.15f - _fullscreen.GetGlobalBounds().Width * 0.5f, _title.GetGlobalBounds().Top + _title.GetGlobalBounds().Height);
 
-
             // Fullscreen checkbox
-            _fullscreenCheckbox = new Checkbox(window, new Vector2f(0,0));
-            _fullscreenCheckbox.Width = _fullscreen.GetGlobalBounds().Height;
-            _fullscreenCheckbox.Height = _fullscreen.GetGlobalBounds().Height;
-            _fullscreenCheckbox.Position = new Vector2f(_window.Size.X - _window.Size.X * 0.15f - _fullscreen.GetGlobalBounds().Width * 0.5f, _fullscreen.GetGlobalBounds().Top + _fullscreen.GetGlobalBounds().Height);
-
+            _fullscreenCheckbox = new Checkbox(window, new Vector2f(_fullscreen.GetGlobalBounds().Left + _fullscreen.GetGlobalBounds().Width * 0.5f - 1.5f * (int)_unit.X, _fullscreen.GetGlobalBounds().Top + _fullscreen.GetGlobalBounds().Height + 0.2f * (int)_unit.X));
+            _fullscreenCheckbox.Width = 3 * (int)_unit.X;
+            _fullscreenCheckbox.Height = 3 * (int)_unit.X;
+            _fullscreenCheckbox.BorderColor = Color.Red;
+            _fullscreenCheckbox.BorderEnabled = true;
+            _fullscreenCheckbox.BorderThickness = 2;
+            _fullscreenCheckbox.FillColor = new Color(50, 50, 50, 122);
+            _fullscreenCheckbox.CrossColor = Color.White;
+            if (windowState.Fullscreen)
+            {
+                _fullscreenCheckbox.IsChecked = true;
+            } else
+            {
+                _fullscreenCheckbox.IsChecked = false;
+            }
+            Console.WriteLine("Fullscreen: " + _fullscreenCheckbox.IsChecked.ToString());
+            
             // Apply button
             _apply = new Text("Apply", font, 5 * (uint)_unit.X);
             _apply.Position = new Vector2f(window.Size.X * 0.5f - _apply.GetGlobalBounds().Width * 0.5f, window.Size.Y * 0.75f);
@@ -123,7 +149,7 @@ namespace Game_with_sfmlui
             if (IsInside(new Vector2f(e.X, e.Y), _apply) && _active)
             {
                 _apply.FillColor = new Color(255, 0, 0, 255);
-                ApplyMenuSettings?.Invoke(this, new WindowArgs(_resolutionPicker.ChosenItem, false));
+                ApplyMenuSettings?.Invoke(this, new WindowArgs(_resolutionPicker.ChosenItem, _fullscreenCheckbox.IsChecked));
                 _active = false;
             }
             else if (IsInside(new Vector2f(e.X, e.Y), _back) && _active)

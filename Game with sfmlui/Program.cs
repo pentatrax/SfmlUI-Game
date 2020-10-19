@@ -13,7 +13,7 @@ namespace Game_with_sfmlui
         static void Main(string[] args)
         {
             const string TITLE = "SfmlUI Game";
-
+            WindowArgs GlobalWindowState = new WindowArgs("1920 x 1080", true);
             RenderWindow Window = new RenderWindow(VideoMode.FullscreenModes[0], TITLE, Styles.Fullscreen);
             Window.Closed += CloseGame;
 
@@ -28,7 +28,7 @@ namespace Game_with_sfmlui
             menu.StateShiftToSettings += StateToSettings;
             menu.QuitGame += CloseGame;
 
-            Settings settings = new Settings(Window, GlobalFont);
+            Settings settings = new Settings(Window, GlobalFont, GlobalWindowState);
             settings.StateShiftToMenu += StateToMenu;
             settings.ApplyMenuSettings += ApplySettings;
 
@@ -72,6 +72,7 @@ namespace Game_with_sfmlui
                 Window.Close();
                 Window = new RenderWindow(res, TITLE, style);
                 Window.Closed += CloseGame;
+                GlobalWindowState = e;
 
                 background = new Background(Window, new Image("rsrc/background-1.png"));
 
@@ -80,7 +81,7 @@ namespace Game_with_sfmlui
                 menu.StateShiftToSettings += StateToSettings;
                 menu.QuitGame += CloseGame;
 
-                settings = new Settings(Window, GlobalFont);
+                settings = new Settings(Window, GlobalFont, GlobalWindowState);
                 settings.StateShiftToMenu += StateToMenu;
                 settings.ApplyMenuSettings += ApplySettings;
             }
