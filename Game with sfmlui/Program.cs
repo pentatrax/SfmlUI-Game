@@ -4,17 +4,38 @@ using SFML;
 using SFML.Graphics;
 using SFML.Window;
 using SFML.System;
+using System.IO;
 
 namespace Game_with_sfmlui
 {
     class Program
     {
+        
         public enum State {Menu, Settings, Play, Pause, GameOver}
         static void Main(string[] args)
         {
             const string TITLE = "Game The Game";
-            WindowArgs GlobalWindowState = new WindowArgs("1920 x 1080", true);
-            RenderWindow Window = new RenderWindow(VideoMode.FullscreenModes[0], TITLE, Styles.Fullscreen);
+            string LocalDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData).ToString();
+            WindowArgs GlobalWindowState;
+            if (File.Exists(LocalDataFolder + "/GTG/saved.res"))
+            {
+                Console.WriteLine("Found resolution file...");
+                string[] fileContent = File.ReadAllText(LocalDataFolder + "/GTG/saved.res").Split(",");
+                bool tempBoolHolder;
+                if (fileContent[1] == "False")
+                {
+                    tempBoolHolder = false;
+                } else
+                {
+                    tempBoolHolder = true;
+                }
+                GlobalWindowState = new WindowArgs(fileContent[0], tempBoolHolder);
+            }
+            else
+            {
+                GlobalWindowState = new WindowArgs("1920 x 1080", true);
+            }
+            RenderWindow Window = new RenderWindow(GetVideoMode(GlobalWindowState.Resolution), TITLE, GetScreenStyle(GlobalWindowState.Fullscreen));
             Window.Closed += CloseGame;
 
             Font GlobalFont = new Font("8-bit Arcade In.ttf");
@@ -73,6 +94,7 @@ namespace Game_with_sfmlui
                 Window = new RenderWindow(res, TITLE, style);
                 Window.Closed += CloseGame;
                 GlobalWindowState = e;
+                File.WriteAllText(LocalDataFolder + "/GTG/saved.res", e.Resolution + "," + e.Fullscreen.ToString());
 
                 background = new Background(Window, new Image("rsrc/background-1.png"));
 
@@ -114,6 +136,33 @@ namespace Game_with_sfmlui
             void StateToGameOver(object sender, EventArgs e)
             {
                 _state = State.GameOver;
+            }
+
+            // Method to pick a window style
+            Styles GetScreenStyle(bool e)
+            {
+                if (e) 
+                {
+                    return Styles.Fullscreen;
+                } else 
+                {
+                    return Styles.Close | Styles.Titlebar;
+                }
+            }
+
+            // Method to gethosen vindow mode the
+            VideoMode GetVideoMode(string res)
+            {
+                foreach (VideoMode resolution in VideoMode.FullscreenModes)
+                {
+                    if (resolution.Width.ToString() + " x " + resolution.Height.ToString() == res)
+                    {
+                        Console.WriteLine("Found saved resolution size" + res);
+                        return resolution;
+                    }
+                }
+                Console.WriteLine("Could not get screen resolutions, getting some anyway.");
+                return new VideoMode(920, 680);
             }
         }
     }
