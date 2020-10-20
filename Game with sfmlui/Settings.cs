@@ -8,6 +8,19 @@ using System.Collections.Generic;
 
 namespace Game_with_sfmlui
 {
+    /*
+     _____________________
+    /OOOOOOOOOOOOOOOOOOOOO\
+    |                     |
+    |OOOOOOOOOOOOOOOOOOOOO|
+    |                     |
+    |                     |
+    |IIIIIIIIIIIIIIIIIIIII|
+    |                     |
+    |IIIIIIIIIIIIIIIIIIIII|
+    \_____________________/
+
+    */
     class Settings
     {
         private bool _active = false;
@@ -34,9 +47,11 @@ namespace Game_with_sfmlui
             _window.MouseButtonPressed += OnMousePress;
             _window.MouseButtonReleased += OnMouseRelease;
 
+
             // Settings title
             _title = new Text("SETTINGS", font, 5 * (uint)_unit.X);
             _title.Position = new Vector2f(window.Size.X * 0.5f, 0.5f * _unit.Y) - new Vector2f(_title.GetGlobalBounds().Width * 0.5f, 0);
+
 
             // Resolution text
             _resolution = new Text("Resolution", font, 3 * (uint)_unit.X);
@@ -73,6 +88,7 @@ namespace Game_with_sfmlui
             }
             _resolutionPicker.Position = new Vector2f(_resolution.GetGlobalBounds().Left + _resolution.GetGlobalBounds().Width * 0.5f - _resolutionPicker.Width * 0.5f, _resolution.Position.Y + _resolution.GetGlobalBounds().Height * 3.5f);
 
+
             // Fullscreen text
             _fullscreen = new Text("Fullscreen ", font, 3 * (uint)_unit.X);
             _fullscreen.Position = new Vector2f(_window.Size.X - _window.Size.X * 0.15f - _fullscreen.GetGlobalBounds().Width * 0.5f, _title.GetGlobalBounds().Top + _title.GetGlobalBounds().Height);
@@ -95,6 +111,7 @@ namespace Game_with_sfmlui
             }
             Console.WriteLine("Fullscreen: " + _fullscreenCheckbox.IsChecked.ToString());
             
+
             // Apply button
             _apply = new Text("Apply", font, 5 * (uint)_unit.X);
             _apply.Position = new Vector2f(window.Size.X * 0.5f - _apply.GetGlobalBounds().Width * 0.5f, window.Size.Y * 0.75f);

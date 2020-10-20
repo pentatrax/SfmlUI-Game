@@ -63,7 +63,7 @@ namespace Game_with_sfmlui
             m_CenterTextInButton(_quitButton, _quitText);
 
             // Title text
-            _gameTitle = new Text("GAME", font, 15 * (uint)_unit.X);
+            _gameTitle = new Text("Game The Game", font, 15 * (uint)_unit.X);
             _gameTitle.Position = new Vector2f( window.Size.X * 0.5f - _gameTitle.GetGlobalBounds().Width * 0.5f,
                                                 window.Size.Y * 0.2f - _gameTitle.GetGlobalBounds().Height * 0.5f );
             _gameTitle.Style = Text.Styles.Bold;

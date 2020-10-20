@@ -12,7 +12,7 @@ namespace Game_with_sfmlui
         public enum State {Menu, Settings, Play, Pause, GameOver}
         static void Main(string[] args)
         {
-            const string TITLE = "SfmlUI Game";
+            const string TITLE = "Game The Game";
             WindowArgs GlobalWindowState = new WindowArgs("1920 x 1080", true);
             RenderWindow Window = new RenderWindow(VideoMode.FullscreenModes[0], TITLE, Styles.Fullscreen);
             Window.Closed += CloseGame;
