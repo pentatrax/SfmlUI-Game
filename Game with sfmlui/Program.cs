@@ -17,10 +17,10 @@ namespace Game_with_sfmlui
             const string TITLE = "Game The Game";
             string LocalDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData).ToString();
             WindowArgs GlobalWindowState;
-            if (File.Exists(LocalDataFolder + "/GTG/saved.res"))
+            if (File.Exists(LocalDataFolder + "/GTG/saved.resolution"))
             {
                 Console.WriteLine("Found resolution file...");
-                string[] fileContent = File.ReadAllText(LocalDataFolder + "/GTG/saved.res").Split(",");
+                string[] fileContent = File.ReadAllText(LocalDataFolder + "/GTG/saved.resolution").Split(",");
                 bool tempBoolHolder;
                 if (fileContent[1] == "False")
                 {
@@ -94,7 +94,14 @@ namespace Game_with_sfmlui
                 Window = new RenderWindow(res, TITLE, style);
                 Window.Closed += CloseGame;
                 GlobalWindowState = e;
-                File.WriteAllText(LocalDataFolder + "/GTG/saved.res", e.Resolution + "," + e.Fullscreen.ToString());
+                if (Directory.Exists(LocalDataFolder + "/GTG"))
+                {
+                    File.WriteAllText(LocalDataFolder + "/GTG/saved.resolution", e.Resolution + "," + e.Fullscreen.ToString());
+                } else
+                {
+                    Directory.CreateDirectory(LocalDataFolder + "/GTG");
+                    File.WriteAllText(LocalDataFolder + "/GTG/saved.resolution", e.Resolution + "," + e.Fullscreen.ToString());
+                }
 
                 background = new Background(Window, new Image("rsrc/background-1.png"));
 
@@ -157,7 +164,7 @@ namespace Game_with_sfmlui
                 {
                     if (resolution.Width.ToString() + " x " + resolution.Height.ToString() == res)
                     {
-                        Console.WriteLine("Found saved resolution size" + res);
+                        Console.WriteLine("Found saved resolution size: " + res);
                         return resolution;
                     }
                 }

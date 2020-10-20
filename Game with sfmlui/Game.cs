@@ -13,7 +13,7 @@ namespace Game_with_sfmlui
         private float _volume;
         private Font _font;
         private RenderWindow _window;
-
+        
 
         // Game Generic Entities
     }
