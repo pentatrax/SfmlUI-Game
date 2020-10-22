@@ -11,7 +11,7 @@ namespace Game_with_sfmlui
     {
         // Global values
         private RenderWindow _window;
-        private Font _font;
+        //private Font _font;
 
         // Positional values
         private Vector2f _position;
@@ -19,22 +19,19 @@ namespace Game_with_sfmlui
         private Vector2f _acceleration;
 
         // Player parts
-        private List<Bodypart> _bodyParts = new List<Bodypart>();
-        private Text name;
+        //private List<Bodypart> _bodyParts = new List<Bodypart>();
+        //private Text name;
+        private Bodypart _torso;
 
-        public Player(RenderWindow window, Font font, Vector2f position, string name, Sprite playerSpriteSheet)
+        public Player(RenderWindow window, Vector2f position)
         {
-            _bodyParts.Add(new Bodypart(window, position, Bodypart.Type.Torso, playerSpriteSheet));
-
+            _torso = new Bodypart(window, position, Bodypart.Type.Torso, new Sprite());
+            _torso.Size
         }
 
         void Draw()
         {
-            _bodyParts = SortBodyPartsByIndex_Z(_bodyParts);
-            foreach (Bodypart part in _bodyParts)
-            {
-                part.Draw();
-            }
+            _torso.Draw();
         }
 
         List<Bodypart> SortBodyPartsByIndex_Z(List<Bodypart> list)

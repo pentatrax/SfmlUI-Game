@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "PnhIxoUqhBenWj0sOIfmGC7qQmuDbm9T5h6Bv4GvQkXApKI7PGOSshCPvu70BQnQoBEbIiDZVTp7+qPQPu8oVA==",
+  "dgSpecHash": "G+JrICotmp6InhjkYW5sQAxiJTlUWPaP3FJEyxYz9DlPrLdYrZCttvYBNXXqboxSOm8g+x1kmGY3eQ4QgCTs+g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\burni\\Source\\Repos\\SfmlUI-Game\\Game with sfmlui\\Game with sfmlui.csproj",
+  "projectFilePath": "C:\\Users\\burni\\source\\repos\\SfmlUI-Game\\Game with sfmlui\\Game with sfmlui.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\burni\\.nuget\\packages\\csfml\\2.5.0\\csfml.2.5.0.nupkg.sha512",
     "C:\\Users\\burni\\.nuget\\packages\\sfml.audio\\2.5.0\\sfml.audio.2.5.0.nupkg.sha512",
@@ -10,7 +10,7 @@
     "C:\\Users\\burni\\.nuget\\packages\\sfml.net\\2.5.0\\sfml.net.2.5.0.nupkg.sha512",
     "C:\\Users\\burni\\.nuget\\packages\\sfml.system\\2.5.0\\sfml.system.2.5.0.nupkg.sha512",
     "C:\\Users\\burni\\.nuget\\packages\\sfml.window\\2.5.0\\sfml.window.2.5.0.nupkg.sha512",
-    "C:\\Users\\burni\\.nuget\\packages\\sfmlui\\1.0.0-pre.6\\sfmlui.1.0.0-pre.6.nupkg.sha512"
+    "C:\\Users\\burni\\.nuget\\packages\\sfmlui\\1.0.0-pre.10\\sfmlui.1.0.0-pre.10.nupkg.sha512"
   ],
   "logs": []
 }

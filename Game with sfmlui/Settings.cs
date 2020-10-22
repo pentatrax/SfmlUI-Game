@@ -64,9 +64,9 @@ namespace Game_with_sfmlui
                 resolutions.Add(videoMode.Width.ToString() + " x " + videoMode.Height.ToString());
             }
             _resolutionPicker = new Dropdown(_window, _resolution.Position, font, 3 * (uint)_unit.X, "");
+            _resolutionPicker.TextColor = Color.White;
             _resolutionPicker.BackgroundColor = new Color(50, 50, 50, 122);
             _resolutionPicker.OutlineColor = Color.Red;
-            _resolutionPicker.TextColor = Color.White;
             _resolutionPicker.HighlightColor = Color.Red;
             foreach (string res in resolutions)
             {

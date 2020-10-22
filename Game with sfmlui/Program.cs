@@ -157,7 +157,7 @@ namespace Game_with_sfmlui
                 }
             }
 
-            // Method to gethosen vindow mode the
+            // Method to get chosen window mode the
             VideoMode GetVideoMode(string res)
             {
                 foreach (VideoMode resolution in VideoMode.FullscreenModes)
