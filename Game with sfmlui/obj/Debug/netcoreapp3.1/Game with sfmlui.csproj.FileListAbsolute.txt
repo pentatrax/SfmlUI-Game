@@ -78,3 +78,4 @@ C:\Users\burni\Source\Repos\SfmlUI-Game\Game with sfmlui\obj\Debug\netcoreapp3.1
 C:\Users\burni\Source\Repos\SfmlUI-Game\Game with sfmlui\obj\Debug\netcoreapp3.1\Game with sfmlui.pdb
 C:\Users\burni\Source\Repos\SfmlUI-Game\Game with sfmlui\obj\Debug\netcoreapp3.1\Game with sfmlui.genruntimeconfig.cache
 C:\Users\burni\source\repos\SfmlUI-Game\Game with sfmlui\bin\Debug\netcoreapp3.1\rsrc\background-1.png
+C:\Users\burni\Source\Repos\SfmlUI-Game\Game with sfmlui\bin\Debug\netcoreapp3.1\rsrc\player.png

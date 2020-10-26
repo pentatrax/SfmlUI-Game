@@ -4,6 +4,7 @@ using SfmlUI;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Game_with_sfmlui
 {
@@ -11,6 +12,8 @@ namespace Game_with_sfmlui
     {
         // Global values
         private RenderWindow _window;
+        private Vector2f _unit;
+        private Color _color;
         //private Font _font;
 
         // Positional values
@@ -23,39 +26,46 @@ namespace Game_with_sfmlui
         //private Text name;
         private Bodypart _torso;
 
+        // Player properties
+        public Vector2f Position 
+        { 
+            get { return _torso.Position; } 
+            set { _position = value; _torso.Position = value; }
+        }
+        public Color Color
+        {
+            get { return _color; }
+            set { _color = value; _torso.Color = value; }
+        }
+        public Vector2f Acceleration { get { return _acceleration; } set { _acceleration = value; } }
+
         public Player(RenderWindow window, Vector2f position)
         {
-            _torso = new Bodypart(window, position, Bodypart.Type.Torso, new Sprite());
-            _torso.Size
+            _window = window;
+            _unit = new Vector2f(window.Size.X / 100f, window.Size.Y / 100f);
+            _torso = new Bodypart(window, position, Bodypart.Type.Torso, new Sprite(new Texture(new Image("rsrc/player.png"))));
+            _torso.Size = new Vector2f(15f * _unit.X, 3f * _unit.Y);
         }
 
-        void Draw()
+        public void Draw()
         {
             _torso.Draw();
         }
-
-        List<Bodypart> SortBodyPartsByIndex_Z(List<Bodypart> list)
+        public void Update(TimeSpan deltaT) 
         {
-            List<Bodypart> tempList = new List<Bodypart>();
-            int tempCounter = 0;
+            float time = Convert.ToSingle(deltaT.TotalMilliseconds / 1000);
+            _velocity += new Vector2f((_acceleration.X * _unit.X) * time, 0f);
+            Position += _velocity;
 
-            for (int i=0; i<list.Count; i++)
+            if (_position.X - _torso.Size.X * 0.5f < 0)
             {
-                if (list[i].zIndex == tempCounter)
-                {
-                    tempList.Add(list[i]);
-                    list.RemoveAt(i);
-                }
-
-                if (list.Count > 0 && i == list.Count - 1)
-                {
-                    i = 0;
-                    tempCounter++;
-                }
+                Position += -1 * _velocity;
+            } else if (_position.X + _torso.Size.X * 0.5f > _window.Size.X)
+            {
+                Position += -1 * _velocity;
             }
-
-            return tempList;
+            _velocity = new Vector2f(_velocity.X * 0.95f, 0f);
+            //Console.WriteLine(_velocity.X * 0.95f);
         }
-
     }
 }

@@ -5,6 +5,8 @@ using SFML.Graphics;
 using SFML.Window;
 using SFML.System;
 using System.IO;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace Game_with_sfmlui
 {
@@ -40,7 +42,7 @@ namespace Game_with_sfmlui
 
             Font GlobalFont = new Font("8-bit Arcade In.ttf");
 
-            State _state = State.Menu;
+            State state = State.Menu;
 
             Background background = new Background(Window, new Image("rsrc/background-1.png"));
 
@@ -53,21 +55,27 @@ namespace Game_with_sfmlui
             settings.StateShiftToMenu += StateToMenu;
             settings.ApplyMenuSettings += ApplySettings;
 
+            Game game = new Game(Window, GlobalFont);
+
+            DateTime prevTime = DateTime.Now;
+            TimeSpan deltaT;
+
             // the main runtime loop
             while (Window.IsOpen)
             {
                 Window.Clear();
                 Window.DispatchEvents();
-                switch (_state)
+                deltaT = DateTime.Now - prevTime;
+                prevTime += deltaT;
+                switch (state)
                 {
                     case State.Menu: background.Draw(); menu.Draw(); break;
                     case State.Settings: background.Draw(); settings.Draw(); break;
-                    case State.Play: break;
+                    case State.Play: game.Update(deltaT); game.Draw(); break;
                     case State.Pause: break;
                     case State.GameOver: break;
                 }
                 Window.Display();
-                
             }
 
             void ApplySettings(object sender, WindowArgs e)
@@ -123,26 +131,26 @@ namespace Game_with_sfmlui
 
             void StateToMenu(object sender, EventArgs e)
             {
-                _state = State.Menu;
-                Console.WriteLine(_state);
+                state = State.Menu;
+                Console.WriteLine(state);
             }
             void StateToPlay(object sender, EventArgs e)
             {
-                _state = State.Play;
-                Console.WriteLine(_state);
+                state = State.Play;
+                Console.WriteLine(state);
             }
             void StateToSettings(object sender, EventArgs e)
             {
-                _state = State.Settings;
-                Console.WriteLine(_state);
+                state = State.Settings;
+                Console.WriteLine(state);
             }
             void StateToPause(object sender, EventArgs e)
             {
-                _state = State.Pause;
+                state = State.Pause;
             }
             void StateToGameOver(object sender, EventArgs e)
             {
-                _state = State.GameOver;
+                state = State.GameOver;
             }
 
             // Method to pick a window style

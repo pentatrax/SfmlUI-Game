@@ -3,6 +3,7 @@ using SFML.System;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Markup;
 
 namespace Game_with_sfmlui
 {
@@ -18,7 +19,17 @@ namespace Game_with_sfmlui
         public float Rotation { get { return _sprite.Rotation; } set { _sprite.Rotation = value; } }
         public Vector2f Size { 
             get { return new Vector2f(_sprite.GetGlobalBounds().Width, _sprite.GetGlobalBounds().Height); }
-            //set { _sprite.Scale = new Vector2f((Size.X / 100f) * )}
+            set { _sprite.Scale = new Vector2f(value.X / (float)_sprite.GetGlobalBounds().Width, value.Y / (float)_sprite.GetGlobalBounds().Height); }
+        }
+        public Color Color
+        {
+            get { return _sprite.Color; }
+            set { _sprite.Color = value; }
+        }
+        public Vector2f Position
+        {
+            get { return _sprite.Position; }
+            set { _sprite.Position = value; }
         }
 
         public Bodypart(RenderWindow window, Vector2f link, Type type, Sprite sprite)
@@ -45,16 +56,12 @@ namespace Game_with_sfmlui
         public void Draw()
         {
             _window.Draw(_sprite);
+            //Console.WriteLine("Drew a bodypart");
         }
 
         public void Rotate(float angle)
         {
             _sprite.Transform.Rotate(angle);
-        }
-
-        public void UpdatePos(Vector2f position)
-        {
-            _sprite.Position = position;
         }
     }
 }

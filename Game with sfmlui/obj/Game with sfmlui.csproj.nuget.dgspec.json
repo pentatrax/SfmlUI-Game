@@ -1,21 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\burni\\source\\repos\\SfmlUI-Game\\Game with sfmlui\\Game with sfmlui.csproj": {}
+    "C:\\Users\\burni\\Source\\Repos\\SfmlUI-Game\\Game with sfmlui\\Game with sfmlui.csproj": {}
   },
   "projects": {
-    "C:\\Users\\burni\\source\\repos\\SfmlUI-Game\\Game with sfmlui\\Game with sfmlui.csproj": {
+    "C:\\Users\\burni\\Source\\Repos\\SfmlUI-Game\\Game with sfmlui\\Game with sfmlui.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\burni\\source\\repos\\SfmlUI-Game\\Game with sfmlui\\Game with sfmlui.csproj",
+        "projectUniqueName": "C:\\Users\\burni\\Source\\Repos\\SfmlUI-Game\\Game with sfmlui\\Game with sfmlui.csproj",
         "projectName": "Game with sfmlui",
-        "projectPath": "C:\\Users\\burni\\source\\repos\\SfmlUI-Game\\Game with sfmlui\\Game with sfmlui.csproj",
+        "projectPath": "C:\\Users\\burni\\Source\\Repos\\SfmlUI-Game\\Game with sfmlui\\Game with sfmlui.csproj",
         "packagesPath": "C:\\Users\\burni\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\burni\\source\\repos\\SfmlUI-Game\\Game with sfmlui\\obj\\",
+        "outputPath": "C:\\Users\\burni\\Source\\Repos\\SfmlUI-Game\\Game with sfmlui\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
+        ],
         "configFilePaths": [
           "C:\\Users\\burni\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -40,7 +44,7 @@
           "dependencies": {
             "SfmlUI": {
               "target": "Package",
-              "version": "[1.0.0-pre.10, )"
+              "version": "[1.0.0-pre.11, )"
             }
           },
           "imports": [
