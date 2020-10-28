@@ -23,7 +23,7 @@ namespace Game_with_sfmlui
         public event EventHandler StateShiftToSettings;
         public event EventHandler QuitGame;
 
-        public Menu(RenderWindow window, Font font)
+        public Menu(RenderWindow window, Font font, string title)
         {
             _window = window;
             _unit = new Vector2f(window.Size.X / 100f, window.Size.Y / 100f);
@@ -63,7 +63,7 @@ namespace Game_with_sfmlui
             m_CenterTextInButton(_quitButton, _quitText);
 
             // Title text
-            _gameTitle = new Text("Game The Game", font, 15 * (uint)_unit.X);
+            _gameTitle = new Text(title, font, 15 * (uint)_unit.X);
             _gameTitle.Position = new Vector2f( window.Size.X * 0.5f - _gameTitle.GetGlobalBounds().Width * 0.5f,
                                                 window.Size.Y * 0.2f - _gameTitle.GetGlobalBounds().Height * 0.5f );
             _gameTitle.Style = Text.Styles.Bold;

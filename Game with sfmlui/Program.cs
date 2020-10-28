@@ -16,7 +16,7 @@ namespace Game_with_sfmlui
         public enum State {Menu, Settings, Play, Pause, GameOver}
         static void Main(string[] args)
         {
-            const string TITLE = "Game The Game";
+            const string TITLE = "Breakout";
             string LocalDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData).ToString();
             WindowArgs GlobalWindowState;
             if (File.Exists(LocalDataFolder + "/GTG/saved.resolution"))
@@ -46,7 +46,7 @@ namespace Game_with_sfmlui
 
             Background background = new Background(Window, new Image("rsrc/background-1.png"));
 
-            Menu menu = new Menu(Window, GlobalFont);
+            Menu menu = new Menu(Window, GlobalFont, TITLE);
             menu.StateShiftToPlay += StateToPlay;
             menu.StateShiftToSettings += StateToSettings;
             menu.QuitGame += CloseGame;
@@ -113,7 +113,7 @@ namespace Game_with_sfmlui
 
                 background = new Background(Window, new Image("rsrc/background-1.png"));
 
-                menu = new Menu(Window, GlobalFont);
+                menu = new Menu(Window, GlobalFont, TITLE);
                 menu.StateShiftToPlay += StateToPlay;
                 menu.StateShiftToSettings += StateToSettings;
                 menu.QuitGame += CloseGame;
@@ -121,6 +121,8 @@ namespace Game_with_sfmlui
                 settings = new Settings(Window, GlobalFont, GlobalWindowState);
                 settings.StateShiftToMenu += StateToMenu;
                 settings.ApplyMenuSettings += ApplySettings;
+
+                game = new Game(Window, GlobalFont);
             }
 
             // State shift commands

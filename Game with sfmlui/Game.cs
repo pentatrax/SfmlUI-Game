@@ -14,7 +14,13 @@ namespace Game_with_sfmlui
         private Vector2f _position;
         private Font _font;
         private RenderWindow _window;
+        private float PlayerSpeed = 10;
         public float _volume;
+
+        // Game events
+        public event EventHandler BackToMenu;
+        public event EventHandler PauseGame;
+        public event EventHandler GameOver;
 
         // Controlls
         private Controlls _controller;
@@ -34,7 +40,7 @@ namespace Game_with_sfmlui
             _player = new Player(window, new Vector2f(window.Size.X * 0.5f, window.Size.Y));
             _player.Color = Color.Yellow;
 
-            _controller = new Controlls(window, Controlls.Type.Keyboard);
+            _controller = new Controlls(window, Controlls.Type.WASD);
 
         }
         public void Update(TimeSpan deltaT)
@@ -43,8 +49,8 @@ namespace Game_with_sfmlui
 
             switch (_controller.GetDirection())
             {
-                case Controlls.Direction.Left: _player.Acceleration = new Vector2f(-10, 0); break;
-                case Controlls.Direction.Right: _player.Acceleration = new Vector2f(10, 0); break;
+                case Controlls.Direction.Left: _player.Acceleration = new Vector2f(-1 * PlayerSpeed, 0); break;
+                case Controlls.Direction.Right: _player.Acceleration = new Vector2f(PlayerSpeed, 0); break;
                 default: _player.Acceleration = new Vector2f(0, 0); break;
             }
         }
