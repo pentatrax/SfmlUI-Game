@@ -47,10 +47,11 @@ namespace Game_with_sfmlui
         {   
             _player.Update(deltaT);
 
-            switch (_controller.GetDirection())
+            switch (_controller.GetInput())
             {
-                case Controlls.Direction.Left: _player.Acceleration = new Vector2f(-1 * PlayerSpeed, 0); break;
-                case Controlls.Direction.Right: _player.Acceleration = new Vector2f(PlayerSpeed, 0); break;
+                case Controlls.Input.ESC: BackToMenu?.Invoke(this, EventArgs.Empty); break;
+                case Controlls.Input.Left: _player.Acceleration = new Vector2f(-1 * PlayerSpeed, 0); break;
+                case Controlls.Input.Right: _player.Acceleration = new Vector2f(PlayerSpeed, 0); break;
                 default: _player.Acceleration = new Vector2f(0, 0); break;
             }
         }

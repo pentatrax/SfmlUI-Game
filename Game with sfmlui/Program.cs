@@ -56,6 +56,9 @@ namespace Game_with_sfmlui
             settings.ApplyMenuSettings += ApplySettings;
 
             Game game = new Game(Window, GlobalFont);
+            game.BackToMenu += StateToMenu;
+            game.PauseGame += StateToPause;
+            game.GameOver += StateToGameOver;
 
             DateTime prevTime = DateTime.Now;
             TimeSpan deltaT;
@@ -71,7 +74,7 @@ namespace Game_with_sfmlui
                 {
                     case State.Menu: background.Draw(); menu.Draw(); break;
                     case State.Settings: background.Draw(); settings.Draw(); break;
-                    case State.Play: game.Update(deltaT); game.Draw(); break;
+                    case State.Play: background.Draw(); game.Update(deltaT); game.Draw(); break;
                     case State.Pause: break;
                     case State.GameOver: break;
                 }
@@ -123,6 +126,9 @@ namespace Game_with_sfmlui
                 settings.ApplyMenuSettings += ApplySettings;
 
                 game = new Game(Window, GlobalFont);
+                game.BackToMenu += StateToMenu;
+                game.PauseGame += StateToPause;
+                game.GameOver += StateToGameOver;
             }
 
             // State shift commands

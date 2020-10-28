@@ -13,7 +13,7 @@ namespace Game_with_sfmlui
     {
         // Global values
         public enum Type { WASD, Arrows, Mouse }
-        public enum Direction { Left, Right, NONE }
+        public enum Input { Left, Right, NONE, ESC }
         private RenderWindow _window;
 
         // Events
@@ -25,7 +25,7 @@ namespace Game_with_sfmlui
 
         // Variables
         private Type _controllType;
-        private Direction _direction;
+        private Input _input;
         //private bool _left = false;
         //private bool _right = false;
 
@@ -33,7 +33,7 @@ namespace Game_with_sfmlui
         {
             _window = window;
             _controllType = controllType;
-            _direction = Direction.NONE;
+            _input = Input.NONE;
             switch (_controllType)
             {
                 case Type.WASD:
@@ -58,25 +58,41 @@ namespace Game_with_sfmlui
         // WASD Events
         private void OnWASDPressEvent(object sender, KeyEventArgs e) 
         {
-            if (e.Code == Keyboard.Key.A){ _direction = Direction.Left; }
-            else if (e.Code == Keyboard.Key.D){ _direction = Direction.Right; }
+            switch (e.Code)
+            {
+                case Keyboard.Key.A: _input = Input.Left; break;
+                case Keyboard.Key.D: _input = Input.Right; break;
+                case Keyboard.Key.Escape: _input = Input.ESC; break;
+            }
         }
         private void OnWASDReleaseEvent(object sender, KeyEventArgs e)
         {
-            if (e.Code == Keyboard.Key.A) { _direction = Direction.NONE; }
-            else if (e.Code == Keyboard.Key.D) { _direction = Direction.NONE; }
+            switch (e.Code)
+            {
+                case Keyboard.Key.A: _input = Input.NONE; break;
+                case Keyboard.Key.D: _input = Input.NONE; break;
+                case Keyboard.Key.Escape: _input = Input.NONE; break;
+            }
         }
 
         // Arrow keys events
         private void OnArrowsPressEvent(object sender, KeyEventArgs e)
         {
-            if (e.Code == Keyboard.Key.Left) { _direction = Direction.Left; }
-            else if (e.Code == Keyboard.Key.Right) { _direction = Direction.Right; }
+            switch (e.Code)
+            {
+                case Keyboard.Key.Left: _input = Input.Left; break;
+                case Keyboard.Key.Right: _input = Input.Right; break;
+                case Keyboard.Key.Escape: _input = Input.ESC; break;
+            }
         }
         private void OnArrowsReleaseEvent(object sender, KeyEventArgs e)
         {
-            if (e.Code == Keyboard.Key.Left) { _direction = Direction.NONE; }
-            else if (e.Code == Keyboard.Key.Right) { _direction = Direction.NONE; }
+            switch (e.Code)
+            {
+                case Keyboard.Key.Left: _input = Input.NONE; break;
+                case Keyboard.Key.Right: _input = Input.NONE; break;
+                case Keyboard.Key.Escape: _input = Input.NONE; break;
+            }
         }
 
         // Mouse events
@@ -87,9 +103,9 @@ namespace Game_with_sfmlui
 
         // Methods
 
-        public Direction GetDirection()
+        public Input GetInput()
         {
-            return _direction;
+            return _input;
         }
     }
 }
