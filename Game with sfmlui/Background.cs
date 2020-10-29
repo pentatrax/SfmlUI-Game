@@ -52,7 +52,7 @@ namespace Game_with_sfmlui
             _image = new Sprite(new Texture(image, tempIntRect), tempIntRect);
             _image.Position = new Vector2f(0, 0);
             _image.Scale = new Vector2f((float)window.Size.X / (float)image.Size.X, (float)window.Size.Y / (float)image.Size.Y);
-            Console.WriteLine("Background to screen ratio: " + _image.Scale.ToString());
+            //Console.WriteLine("Background to screen ratio: " + _image.Scale.ToString());
             _image.Texture.Smooth = false;
             _image.Texture.Srgb = true;
         }

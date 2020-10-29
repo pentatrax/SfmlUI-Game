@@ -29,6 +29,11 @@ namespace Game_with_sfmlui
         //private bool _left = false;
         //private bool _right = false;
 
+        public Type ControllType { 
+            get { return _controllType; } 
+            set { _controllType = value; } 
+        }
+
         public Controlls(RenderWindow window, Type controllType)
         {
             _window = window;

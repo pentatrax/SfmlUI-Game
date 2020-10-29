@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SFML.System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,13 +7,20 @@ namespace Game_with_sfmlui
 {
     class WindowArgs
     {
-        public string Resolution;
-        public bool Fullscreen;
+        private string _resolution;
+        private bool _fullscreen;
+        private Controlls.Type _input;
 
-        public WindowArgs(string res, bool fullscreen)
+        public string Resolution { get { return _resolution; } }
+        public bool Fullscreen { get { return _fullscreen; } }
+        public Controlls.Type InputType { get { return _input; } }
+
+
+        public WindowArgs(string res, bool fullscreen, Controlls.Type input)
         {
-            Resolution = res;
-            Fullscreen = fullscreen;
+            _resolution = res;
+            _fullscreen = fullscreen;
+            _input = input;
         }
     }
 }

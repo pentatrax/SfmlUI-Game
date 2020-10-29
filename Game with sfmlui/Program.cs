@@ -21,7 +21,7 @@ namespace Game_with_sfmlui
             WindowArgs GlobalWindowState;
             if (File.Exists(LocalDataFolder + "/GTG/saved.resolution"))
             {
-                Console.WriteLine("Found resolution file...");
+                Console.WriteLine("Found settings file...");
                 string[] fileContent = File.ReadAllText(LocalDataFolder + "/GTG/saved.resolution").Split(",");
                 bool tempBoolHolder;
                 if (fileContent[1] == "False")
@@ -31,11 +31,23 @@ namespace Game_with_sfmlui
                 {
                     tempBoolHolder = true;
                 }
-                GlobalWindowState = new WindowArgs(fileContent[0], tempBoolHolder);
+                Controlls.Type tempInputHolder;
+                switch (fileContent[2])
+                {
+                    case "WASD": tempInputHolder = Controlls.Type.WASD; break;
+                    case "Arrows": tempInputHolder = Controlls.Type.Arrows; break;
+                    case "Mouse": tempInputHolder = Controlls.Type.Mouse; break;
+                    default: tempInputHolder = Controlls.Type.WASD; break;
+                }
+                Console.WriteLine("Found saved input type: " + fileContent[2]);
+                GlobalWindowState = new WindowArgs(fileContent[0], tempBoolHolder, tempInputHolder);
             }
             else
             {
-                GlobalWindowState = new WindowArgs("1920 x 1080", true);
+                GlobalWindowState = new WindowArgs("1920 x 1080", true, Controlls.Type.WASD);
+                Console.WriteLine("No saved settings found, picking available resolution...");
+                Console.WriteLine("No saved settings found, window will go fullscreen by default...");
+                Console.WriteLine("No saved settings found, choosing default input type...");
             }
             RenderWindow Window = new RenderWindow(GetVideoMode(GlobalWindowState.Resolution), TITLE, GetScreenStyle(GlobalWindowState.Fullscreen));
             Window.Closed += CloseGame;
@@ -55,7 +67,7 @@ namespace Game_with_sfmlui
             settings.StateShiftToMenu += StateToMenu;
             settings.ApplyMenuSettings += ApplySettings;
 
-            Game game = new Game(Window, GlobalFont);
+            Game game = new Game(Window, GlobalFont, GlobalWindowState.InputType);
             game.BackToMenu += StateToMenu;
             game.PauseGame += StateToPause;
             game.GameOver += StateToGameOver;
@@ -107,11 +119,11 @@ namespace Game_with_sfmlui
                 GlobalWindowState = e;
                 if (Directory.Exists(LocalDataFolder + "/GTG"))
                 {
-                    File.WriteAllText(LocalDataFolder + "/GTG/saved.resolution", e.Resolution + "," + e.Fullscreen.ToString());
+                    File.WriteAllText(LocalDataFolder + "/GTG/saved.resolution", e.Resolution + "," + e.Fullscreen.ToString() + "," + e.InputType.ToString());
                 } else
                 {
                     Directory.CreateDirectory(LocalDataFolder + "/GTG");
-                    File.WriteAllText(LocalDataFolder + "/GTG/saved.resolution", e.Resolution + "," + e.Fullscreen.ToString());
+                    File.WriteAllText(LocalDataFolder + "/GTG/saved.resolution", e.Resolution + "," + e.Fullscreen.ToString() + "," + e.InputType.ToString());
                 }
 
                 background = new Background(Window, new Image("rsrc/background-1.png"));
@@ -125,7 +137,7 @@ namespace Game_with_sfmlui
                 settings.StateShiftToMenu += StateToMenu;
                 settings.ApplyMenuSettings += ApplySettings;
 
-                game = new Game(Window, GlobalFont);
+                game = new Game(Window, GlobalFont, e.InputType);
                 game.BackToMenu += StateToMenu;
                 game.PauseGame += StateToPause;
                 game.GameOver += StateToGameOver;
@@ -180,7 +192,7 @@ namespace Game_with_sfmlui
                 {
                     if (resolution.Width.ToString() + " x " + resolution.Height.ToString() == res)
                     {
-                        Console.WriteLine("Found saved resolution size: " + res);
+                        Console.WriteLine("Found possible resolution size: " + res);
                         return resolution;
                     }
                 }

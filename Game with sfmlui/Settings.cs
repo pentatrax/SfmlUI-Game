@@ -34,6 +34,8 @@ namespace Game_with_sfmlui
         private Text _apply;
         private Text _fullscreen;
         private Checkbox _fullscreenCheckbox;
+        private Text _input;
+        private RadioButton _inputRadiobutton;
         public event EventHandler StateShiftToMenu;
         public event EventHandler<WindowArgs> ApplyMenuSettings;
 
@@ -90,11 +92,11 @@ namespace Game_with_sfmlui
 
 
             // Fullscreen text
-            _fullscreen = new Text("Fullscreen ", font, 3 * (uint)_unit.X);
+            _fullscreen = new Text("Fullscreen", font, 3 * (uint)_unit.X);
             _fullscreen.Position = new Vector2f(_window.Size.X - _window.Size.X * 0.15f - _fullscreen.GetGlobalBounds().Width * 0.5f, _title.GetGlobalBounds().Top + _title.GetGlobalBounds().Height);
 
             // Fullscreen checkbox
-            _fullscreenCheckbox = new Checkbox(window, new Vector2f(_fullscreen.GetGlobalBounds().Left + _fullscreen.GetGlobalBounds().Width * 0.5f - 1.5f * (int)_unit.X, _fullscreen.GetGlobalBounds().Top + _fullscreen.GetGlobalBounds().Height + 0.2f * (int)_unit.X));
+            _fullscreenCheckbox = new Checkbox(window, new Vector2f(_fullscreen.GetGlobalBounds().Left + _fullscreen.GetGlobalBounds().Width * 0.5f - 1.5f * (int)_unit.X, _fullscreen.GetGlobalBounds().Top + _fullscreen.GetGlobalBounds().Height + 0.25f * (int)_unit.X));
             _fullscreenCheckbox.Width = 3 * (int)_unit.X;
             _fullscreenCheckbox.Height = 3 * (int)_unit.X;
             _fullscreenCheckbox.BorderColor = Color.Red;
@@ -110,7 +112,14 @@ namespace Game_with_sfmlui
                 _fullscreenCheckbox.IsChecked = false;
             }
             Console.WriteLine("Fullscreen: " + _fullscreenCheckbox.IsChecked.ToString());
-            
+
+            // Input text
+            _input = new Text("Input", font, 3 * (uint)_unit.X);
+            _input.Position = new Vector2f(_window.Size.X * 0.5f - _input.GetGlobalBounds().Width * 0.5f, _title.GetGlobalBounds().Top + _title.GetGlobalBounds().Height);
+
+            // Input radiobutton
+            _inputRadiobutton = new RadioButton(window, _input.Position + new Vector2f(0, _input.GetGlobalBounds().Height * 3.5f), 0.5f * _unit.X, new Vector2f(0, 4f * _unit.Y), 3);
+            Console.WriteLine("Input type: " + windowState.InputType.ToString());
 
             // Apply button
             _apply = new Text("Apply", font, 5 * (uint)_unit.X);
@@ -131,6 +140,8 @@ namespace Game_with_sfmlui
             _resolutionPicker.Draw();
             _window.Draw(_fullscreen);
             _fullscreenCheckbox.Draw();
+            _window.Draw(_input);
+            _inputRadiobutton.Draw();
 
         }
 
@@ -166,7 +177,17 @@ namespace Game_with_sfmlui
             if (IsInside(new Vector2f(e.X, e.Y), _apply) && _active)
             {
                 _apply.FillColor = new Color(255, 0, 0, 255);
-                ApplyMenuSettings?.Invoke(this, new WindowArgs(_resolutionPicker.ChosenItem, _fullscreenCheckbox.IsChecked));
+                int tempRadiobuttonOutput = _inputRadiobutton._selected;
+                Controlls.Type tempInputTypeHolder;
+                switch (tempRadiobuttonOutput)
+                {
+                    case 0: tempInputTypeHolder = Controlls.Type.WASD; break;
+                    case 1: tempInputTypeHolder = Controlls.Type.Arrows; break;
+                    case 2: tempInputTypeHolder = Controlls.Type.Mouse; break;
+                    default: tempInputTypeHolder = Controlls.Type.WASD; break;
+                }
+                Console.Clear();
+                ApplyMenuSettings?.Invoke(this, new WindowArgs(_resolutionPicker.ChosenItem, _fullscreenCheckbox.IsChecked, tempInputTypeHolder));
                 _active = false;
             }
             else if (IsInside(new Vector2f(e.X, e.Y), _back) && _active)

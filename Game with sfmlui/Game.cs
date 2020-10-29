@@ -30,8 +30,9 @@ namespace Game_with_sfmlui
         private Player _player;
 
 
-        public Game(RenderWindow window, Font font)
+        public Game(RenderWindow window, Font font, Controlls.Type input)
         {
+            //Console.WriteLine("Game recieved input type: " + input.ToString());
             _window = window;
             _font = font;
             _volume = 1;
@@ -40,7 +41,7 @@ namespace Game_with_sfmlui
             _player = new Player(window, new Vector2f(window.Size.X * 0.5f, window.Size.Y));
             _player.Color = Color.Yellow;
 
-            _controller = new Controlls(window, Controlls.Type.WASD);
+            _controller = new Controlls(window, input);
 
         }
         public void Update(TimeSpan deltaT)
